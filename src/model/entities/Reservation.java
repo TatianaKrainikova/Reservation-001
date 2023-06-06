@@ -4,6 +4,7 @@ import model.exceptions.DomainException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Reservation {
 
@@ -23,4 +24,10 @@ public class Reservation {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
+
+    public long duration() {
+        long diff = checkOut.getTime() - checkIn.getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+    }
+
 }
