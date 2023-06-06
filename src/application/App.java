@@ -25,6 +25,16 @@ public class App {
 
             Reservation reservation = new Reservation(roomNumber, checkIn, checkOut);
             System.out.println("Reservation: " + reservation);
+
+            System.out.println("\nEnter your details to update your booking: ");
+            System.out.println("Check-in date (dd/MM/yyyy): ");
+            checkIn = sdf.parse(scanner.next());
+            System.out.println("Check-out date (dd/MM/yyyy): ");
+            checkOut = sdf.parse(scanner.next());
+
+            reservation.updateDates(checkIn, checkOut);
+            System.out.println("New reservation: " + reservation);
+
         } catch (ParseException ex) {
             System.out.println("Invalid date format.");
         } catch (DomainException ex) {
