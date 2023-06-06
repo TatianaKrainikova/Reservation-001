@@ -30,4 +30,16 @@ public class Reservation {
         return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
+    public void updateDates(Date checkIn, Date checkOut) {
+        Date now = new Date();
+        if (checkIn.before(now) || checkOut.before(now)) {
+            throw new DomainException("Booking dates to update must be dates in the future.");
+        }
+        if (!checkOut.after(checkIn)) {
+            throw new DomainException("Check-out date must be later than check-in date.");
+        }
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+    }
+
 }
